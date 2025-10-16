@@ -1,0 +1,8 @@
+fastapi==0.118.0
+fastapi[standard]
+pandas
+unvicorn
+asyncpg
+python-dotenv
+tortoise-orm[asyncpg]
+passlib
