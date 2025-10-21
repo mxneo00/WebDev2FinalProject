@@ -33,9 +33,25 @@ app.add_middleware(
      allow_headers=["*"],  
 )
 
+@app.get("/")
+async def read_root(request: Request):
+    return templates.TemplateResponse("index.html", {"request": request})
+
+@app.get("/signup")
+async def read_signup(request: Request):
+    return templates.TemplateResponse("signup.html", {"request": request})
+
 @app.get("/login")
-async def get_login(request: Request):
+async def read_login(request: Request):
     return templates.TemplateResponse("login.html", {"request": request, "csrf_token": CSRFToken})
+
+@app.get("/dashboard")
+async def read_dashboard(request: Request):
+    return templates.TemplateResponse("dashboard.html", {"request": request})
+
+@app.get("/me")
+async def read_me(request: Request):
+    return {"msg" : "TODO"}
 
 @app.get("/user")
 async def get_users(request: Request):
@@ -44,6 +60,7 @@ async def get_users(request: Request):
     users_response = []
     for user in users: 
         users_response.append({"username": user.username})
+    return {"msg": "TODO"}
 
 @app.get("/games")
 async def get_games(request: Request):
@@ -52,3 +69,4 @@ async def get_games(request: Request):
     games_response = []
     for game in games:
         games_response.append({"gameTitle" : game.title})
+    return {"msg": "TODO"}
