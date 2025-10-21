@@ -1,0 +1,47 @@
+# Python native
+import os
+# Dependency library
+from fastapi import FastAPI, Depends
+from starlette.requests import Request
+from starlette.responses import HTMLResponse, JSONResponse
+from fastapi.templating import Jinja2Templates
+from fastapi.staticfiles import StaticFiles
+from starlette.middleware.cors import CORSMiddleware
+from passlib.hash import bcrypt
+# Application Code
+from backend.session import Session
+from backend.lifespan import lifespan
+from backend.app.models import User, Game
+from backend.app.router import (auth, protected)
+from backend.config import app
+from backend.dependencies import get_current_user
+
+app.include_router(auth.router)
+app.include_router(protected.router)
+
+origins = [
+    "http://localhost:5173",
+]
+app.add_middleware(
+     CORSMiddleware,
+     allow_origins=origins,  
+    allow_credentials=True,
+     allow_methods=["*"],  
+     allow_headers=["*"],  
+)
+
+@app.get("/user")
+async def get_users(request: Request):
+    users = await User.all()
+
+    users_response = []
+    for user in users: 
+        users_response.append({"username": user.username})
+
+@app.get("/games")
+async def get_games(request: Request):
+    games = await Game.all()
+
+    games_response = []
+    for game in games:
+        games_response.append({"gameTitle" : game.title})

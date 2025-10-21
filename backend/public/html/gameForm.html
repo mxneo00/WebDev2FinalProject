@@ -1,0 +1,39 @@
+<!DOCTYPE HTML5>
+
+<html>
+    <head>
+        <title>{{ title }}</title>
+        <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    </head>
+
+    <style>
+
+    </style>
+
+    <script>
+        let gate = false;
+
+        $(document).ready(function() {
+
+        });
+    </script>
+    
+    <body>
+        <div class="gameForm">
+            <form method="POST" action="/games">
+                <Label>Title</Label>
+                <input type="text" name="title">
+                <Label>Category</Label>
+                <input type="text" name="category">
+                <label>Platform</label>
+                <input type="platform" name="platform">
+                <Label>Status</Label>
+                <input type="text" name="status">
+                <Label>Hours Played</Label>
+                <input type="text" name="hours">
+                <Label>Rating</Label>
+                <input type="text" name="rating">
+            </form>
+        </div>
+    </body>
+</html>
