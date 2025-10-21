@@ -9,7 +9,7 @@ from fastapi.staticfiles import StaticFiles
 from starlette.middleware.cors import CORSMiddleware
 from passlib.hash import bcrypt
 # Application Code
-from backend.session import Session
+from backend.session import Session, CSRFToken
 from backend.lifespan import lifespan
 from backend.app.models import User, Game
 from backend.app.router import (auth, protected)
@@ -18,6 +18,9 @@ from backend.dependencies import get_current_user
 
 app.include_router(auth.router)
 app.include_router(protected.router)
+
+
+templates = Jinja2Templates(directory="backend/public/html")
 
 origins = [
     "http://localhost:5173",
@@ -29,6 +32,10 @@ app.add_middleware(
      allow_methods=["*"],  
      allow_headers=["*"],  
 )
+
+@app.get("/login")
+async def get_login(request: Request):
+    return templates.TemplateResponse("login.html", {"request": request, "csrf_token": CSRFToken})
 
 @app.get("/user")
 async def get_users(request: Request):
