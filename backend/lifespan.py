@@ -4,30 +4,19 @@ from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from tortoise import Tortoise
 from backend.redis.redis import RedisAdapter
+from backend.app.models import User, Game
 
-from dotenv import load_dotenv
-import os
-
-load_dotenv("backend/.env")
-
-db_user = os.getenv("USER")
-db_pass = os.getenv("PASSWORD")
-db_name = os.getenv("DB")
-db_host = os.getenv("HOST")
-db_port = os.getenv("DB_PORT")
-
-db_url = f"postgres://{db_user}:{db_pass}@{db_host}:{db_port}/{db_name}"
-
+db_url = f"postgres://postgres:Unitheunicorn.00@127.0.0.1:5432/gameLib"
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     try: 
         await Tortoise.init(
             db_url=db_url,
-            modules={"models": ["backend.app.models"]}
+            modules={"models": ["backend.app.models.user", "backend.app.models.games"]}
         )
         
-        await Tortoise.generate_schema()
+        await Tortoise.generate_schemas()
     except Exception as e:
         print(f"ERROR: failed to initialize database ({e})")
 

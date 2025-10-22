@@ -1,7 +1,5 @@
 # Python
-import uuid
 from datetime import datetime
-from enum import Enum
 # Libraries
 from passlib.hash import bcrypt, argon2
 from tortoise import models, fields
@@ -30,3 +28,7 @@ class User(models.Model):
 
     def __str__(self):
         return f"<User {self.username}>"
+    
+    class Meta:
+        table = "users"
+        app = "models"

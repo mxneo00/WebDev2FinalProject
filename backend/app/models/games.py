@@ -19,3 +19,7 @@ class Game(models.Model):
 
     def __str__(self):
         return f"<Game {self.gameTitle}>"
+    
+    class Meta:
+        table = "games"
+        app = "models"

@@ -8,10 +8,10 @@ from starlette.requests import Request
 from starlette.responses import JSONResponse, RedirectResponse
 from tortoise.exceptions import IntegrityError
 # Application Code
+from backend.config import app
 from backend.session import Session
 from backend.lifespan import lifespan
 from backend.app.models import User
-from backend.config import app
 
 router = APIRouter(prefix="",tags=['auth'],)
 templates = Jinja2Templates(directory="backend/public/html")

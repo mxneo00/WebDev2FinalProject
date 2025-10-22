@@ -2,7 +2,8 @@ fastapi==0.118.0
 fastapi[standard]
 pandas
 uvicorn
-asyncpg
 python-dotenv
-tortoise-orm[asyncpg]
+tortoise-orm==0.19.3
+asyncpg==0.29.0
 passlib
+argon2_cffi

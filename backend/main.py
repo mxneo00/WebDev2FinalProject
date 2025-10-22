@@ -9,16 +9,15 @@ from fastapi.staticfiles import StaticFiles
 from starlette.middleware.cors import CORSMiddleware
 from passlib.hash import bcrypt
 # Application Code
+from backend.config import app
 from backend.session import Session, CSRFToken
 from backend.lifespan import lifespan
 from backend.app.models import User, Game
 from backend.app.router import (auth, protected)
-from backend.config import app
 from backend.dependencies import get_current_user
 
 app.include_router(auth.router)
 app.include_router(protected.router)
-
 
 templates = Jinja2Templates(directory="backend/public/html")
 

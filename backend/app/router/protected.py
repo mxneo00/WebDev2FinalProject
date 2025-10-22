@@ -6,8 +6,8 @@ from starlette.responses import JSONResponse
 from passlib.hash import bcrypt
 from tortoise.exceptions import IntegrityError
 # Application Code
-from backend.app.models import User, Game
 from backend.config import app
+from backend.app.models import User, Game
 from backend.context import UserCtx
 from backend.dependencies import get_current_user
 
