@@ -1,5 +1,5 @@
 # Libraries
-from passlib.hash import bcrypt
+from passlib.hash import bcrypt, argon2
 from fastapi import FastAPI, Form, Depends
 from fastapi import APIRouter
 from fastapi.templating import Jinja2Templates
@@ -22,26 +22,28 @@ async def get_signup(request: Request):
 
 @router.post("/signup")
 async def post_signup(
-    fname = Form(...),
-    lname = Form(...),
-    email = Form(...),
-    username = Form(...),
-    password = Form(...),
-    password_confirmation = Form(...),
+    fname: str = Form(...),
+    lname: str = Form(...),
+    email: str = Form(...),
+    username: str = Form(...),
+    password: str = Form(...),
+    password_confirmation: str = Form(...),
 ):
     if password != password_confirmation:
         return JSONResponse({"error": "Passwords must match"}, status_code = 400)
     try:
+        #digest = bcrypt.hash(password.encode("utf-8")[:72])
+        digest = argon2.hash(password)
         user = await User.create(
             username=username,
             fname=fname, 
             lname=lname, 
             email=email,
-            digest=bcrypt.hash(password)
+            digest=digest
         )
     except IntegrityError as e:
-        JSONResponse({"error": "Failed to create user"}, status_code = 400)
-    return RedirectResponse(url = "/dashboard")
+        return JSONResponse({"error": "Failed to create user"}, status_code = 400)
+    return RedirectResponse(url = "/dashboard", status_code = 303)
 #-----------------LOGIN---------------------------------
 @router.post("/login")
 async def post_login(

@@ -1,24 +1,56 @@
 <!DOCTYPE HTML5>
 
 <html>
-    <head>
-        <title>{{ title }}</title>
-        <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-    </head>
+	<head>
+		<title>{{ title }}</title>
+		<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+	</head>
 
-    <style>
+	<style>
+		.pink-bg {
+			background-color: #cc5d5d;
+		}
+		.bttn {
+			background: #1d54bc;
+			border-radius: 10px;
+			box-shadow: 5px 5px 5 5 #0a1d41;
+			/* border: 1px solid white; */
+			padding: 10px;
+			width:200px;
+			text-align: center;
+			color:white;
+		}
 
-    </style>
+		.bttn:hover {
+			cursor: pointer;
+			background: #5a88de;
+			transition: 0.2s ease-in-out;
+		}
 
-    <script>
-        let gate = false;
+		bttn.magenta {
+			background: #c241ce;
+		}
+	</style>
 
-        $(document).ready(function() {
+	<script>
+		let gate = false;
 
-        });
-    </script>
-    
-    <body>
+		$(document).ready(function(){
+			
+		});
+	</script>
 
-    </body>
+	<body class="pink-bg">
+		<header></header>
+		<main>
+			<H1>In Class Assignment 2</h1>
+			<p>I am on host {{ host }} Welcome to FastAPI</p>
+			<div style="padding:20px;">
+				<a href="/signup" class="bttn magenta">Signup</a>
+				<a href="/login" class="bttn magenta">Login</a>
+			</div>
+			
+		</main>
+		<footer></footer>
+	</body>
 </html>

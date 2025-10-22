@@ -5,12 +5,26 @@ from fastapi import FastAPI
 from tortoise import Tortoise
 from backend.redis.redis import RedisAdapter
 
+from dotenv import load_dotenv
+import os
+
+load_dotenv("backend/.env")
+
+db_user = os.getenv("USER")
+db_pass = os.getenv("PASSWORD")
+db_name = os.getenv("DB")
+db_host = os.getenv("HOST")
+db_port = os.getenv("DB_PORT")
+
+db_url = f"postgres://{db_user}:{db_pass}@{db_host}:{db_port}/{db_name}"
+
+
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     try: 
         await Tortoise.init(
-            db_url=f"postgres://{os.getenv("user")}:{os.getenv("password")}@localhost:5432/{os.getenv("DB")}",
-            modules={"models": ["app.models"]}
+            db_url=db_url,
+            modules={"models": ["backend.app.models"]}
         )
         
         await Tortoise.generate_schema()

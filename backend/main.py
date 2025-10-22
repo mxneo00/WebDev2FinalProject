@@ -23,7 +23,7 @@ app.include_router(protected.router)
 templates = Jinja2Templates(directory="backend/public/html")
 
 origins = [
-    "http://localhost:5173",
+    "http://localhost:8000",
 ]
 app.add_middleware(
      CORSMiddleware,

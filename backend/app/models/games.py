@@ -7,7 +7,7 @@ from passlib.hash import bcrypt
 from tortoise import models, fields
 
 class Game(models.Model):
-    game_id = fields.UuidField(pk=True, unique=True)
+    game_id = fields.IntField(pk=True, unique=True)
     gameTitle = fields.CharField(max_length=50, unique=True)
     category = fields.CharField(max_length=50)
     platform = fields.CharField(max_length=50)
@@ -18,4 +18,4 @@ class Game(models.Model):
     updated_at = fields.DatetimeField(auto_now=True)
 
     def __str__(self):
-        return self.gameTitle
+        return f"<Game {self.gameTitle}>"
