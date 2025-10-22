@@ -7,7 +7,70 @@
     </head>
 
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
 
+        body {
+            background-color: #f5f6fa;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        main {
+            background-color: #ffffff;
+            padding: 40px 30px;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 450px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #2f3640;
+        }
+
+        form div {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #2f3640;
+        }
+
+        input[type="text"], input[type="password"], input[type="email"] {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid #dcdde1;
+            border-radius: 6px;
+            font-size: 16px;
+        }
+
+        input[type="submit"] {
+            width: 100%;
+            padding: 12px;
+            background-color: #00a8ff;
+            color: white;
+            font-size: 16px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0097e6;
+        }
     </style>
 
     <script>
@@ -19,36 +82,38 @@
     </script>
     
     <body>
-        <header></header>
         <main>
+            <h1>Sign Up</h1>
             <form method="POST" action="/signup">
                 <div>
-                    <label>Username</label>
-                    <input type="text" name="username" />
+                    <label for="username">Username</label>
+                    <input type="text" name="username" id="username" placeholder="Choose a username" required>
                 </div>
                 <div>
-                    <label>First Name</label>
-                    <input type="text" name="fname" />
+                    <label for="fname">First Name</label>
+                    <input type="text" name="fname" id="fname" placeholder="First Name" required>
                 </div>
                 <div>
-                    <label>Last Name</label>
-                    <input type="text" name="lname" />
+                    <label for="lname">Last Name</label>
+                    <input type="text" name="lname" id="lname" placeholder="Last Name" required>
                 </div>
                 <div>
-                    <label>Email</label>
-                    <input type="text" name="email" />
+                    <label for="email">Email</label>
+                    <input type="email" name="email" id="email" placeholder="you@example.com" required>
                 </div>
                 <div>
-                    <label>Password</label>
-                    <input type="text" name="password" />
+                    <label for="password">Password</label>
+                    <input type="password" name="password" id="password" placeholder="Enter password" required>
                 </div>
                 <div>
-                    <label>Confirm Password</label>
-                    <input type="text" name="password_confirmation" />
+                    <label for="password_confirmation">Confirm Password</label>
+                    <input type="password" name="password_confirmation" id="password_confirmation" placeholder="Confirm password" required>
                 </div>
-                <input type="submit" value="Sign up" />
+                <input type="submit" value="Sign Up">
             </form>
+            <div class="footer-link">
+                <span>Already have an account? <a href="/login">Login</a></span>
+            </div>
         </main>
-        <footer></footer>
     </body>
 </html>
