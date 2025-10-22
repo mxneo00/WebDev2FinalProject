@@ -48,10 +48,6 @@ async def read_login(request: Request):
 async def read_dashboard(request: Request):
     return templates.TemplateResponse("dashboard.html", {"request": request})
 
-@app.get("/me")
-async def read_me(request: Request):
-    return {"msg" : "TODO"}
-
 @app.get("/user")
 async def get_users(request: Request):
     users = await User.all()
@@ -59,7 +55,7 @@ async def get_users(request: Request):
     users_response = []
     for user in users: 
         users_response.append({"username": user.username})
-    return {"msg": "TODO"}
+    return JSONResponse({"users": users_response})
 
 @app.get("/games")
 async def get_games(request: Request):
@@ -68,4 +64,4 @@ async def get_games(request: Request):
     games_response = []
     for game in games:
         games_response.append({"gameTitle" : game.title})
-    return {"msg": "TODO"}
+    return JSONResponse({"games": games_response})
