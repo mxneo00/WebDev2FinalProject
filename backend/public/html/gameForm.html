@@ -2,12 +2,68 @@
 
 <html>
     <head>
-        <title>{{ title }}</title>
+        <title>Game Manager</title>
         <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     </head>
 
     <style>
-
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: #b45dcc;
+            color: white
+        }
+        header {
+            background-color: #1d54bc;
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        h1{
+            margin:0;
+            font-size: 24px;
+        }
+        main {
+            margin: 40px auto;
+            width: 60%;
+            background: rgba(255,255,255,0.1);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
+        form{
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        label {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        input {
+            padding: 10px;
+            border-radius: 8px;
+            border: none;
+            width: 100%;
+        }
+        .bttn {
+            background: #1d54bc;
+            border-radius: 10px;
+            padding: 10px;
+            width: 200px;
+            text-align: center;
+            color: white;
+            margin-top: 20px;
+            display: inline-block;
+            text-decoration: none;
+            border: none;
+        }
+        .bttn:hover {
+            cursor: pointer;
+            background: #5a88de;
+            transition: 0.2s ease-in-out;
+        }
     </style>
 
     <script>
@@ -19,7 +75,14 @@
     </script>
     
     <body>
-        <div class="gameForm">
+        <header>
+            <h1>Game Library</h1>
+            <div>
+                <a href="/dashboard" class="bttn">back</a>
+            </div>
+        </header>
+        <main>
+            <h2>Add/Edit a Game</h2>
             <form method="POST" action="/games">
                 <Label>Title</Label>
                 <input type="text" name="title">
@@ -33,7 +96,9 @@
                 <input type="text" name="hours">
                 <Label>Rating</Label>
                 <input type="text" name="rating">
+                
+                <button type="submit" class="bttn">Save Game</button>
             </form>
-        </div>
+        </main>
     </body>
 </html>
