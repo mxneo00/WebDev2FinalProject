@@ -2,28 +2,117 @@
 
 <html>
     <head>
-        <title>{{ title }}</title>
+        <title>{{ user.username }}'s Dashboard</title>
         <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     </head>
 
     <style>
-
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: #b45dcc;
+            color: white;
+        }
+        header {
+            background-color: #1d54bc;
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        h1 {
+            margin: 0;
+        }
+        .nav-info {
+            font-size: 14px;
+        }
+        main {
+            margin: 40px auto;
+            width: 80%;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            color: black;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        th, td {
+            text-align: left;
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #1d54bc;
+            color: white;
+        }
+        tr:hover {
+            background-color: #f3f3f3;
+        }
+        .bttn {
+            background: #1d54bc;
+            border-radius: 10px;
+            padding: 10px;
+            width: 200px;
+            text-align: center;
+            color: white;
+            margin-top: 20px;
+            display: inline-block;
+            text-decoration: none;
+        }
+        .bttn:hover {
+            cursor: pointer;
+            background: #5a88de;
+            transition: 0.2s ease-in-out;
+        }
     </style>
 
     <script>
         let gate = false;
 
         $(document).ready(function() {
-
+            console.log("Dashboard ready for {{ user.username }}")
         });
     </script>
     
     <body>
-        <div class="heading">
-
-        </div>
-        <div class="games">
-            
-        </div>
+        <header>
+            <h1>Game Library</h1>
+            <div class="nav-info">
+                <a href="/logout" class="bttn">Logout</a>
+            </div>
+        </header>
+        <main>
+            <a href="/private/gameForm" class="bttn"> Add new game </a>
+            {% if games %}
+            <table style="margin-top:20px;">
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Platform</th>
+                        <th>Genre</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for game in games %}
+                    <tr>
+                        <td>{{ game.title }}</td>
+                        <td>{{ game.platform or '-' }}</td>
+                        <td>{{ game.genre or '-' }}</td>
+                        <td>{{ game.status }}</td>
+                    </tr>
+                    {% end for %}
+                </tbody>
+            </table>
+            {% else %}
+                <p>You haven't added any games yet</p>
+            {% end if %}
+        </main>
     </body>
 </html>

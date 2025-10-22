@@ -13,7 +13,7 @@ class Game(models.Model):
     platform = fields.CharField(max_length=50)
     status = fields.CharField(max_length=50, default="Wishlist")
     rating = fields.IntField(null=True)
-    user = fields.ForeignKeyField("models.user", related_name = "games")
+    owner = fields.ForeignKeyField("models.user", related_name = "games")
     created_at = fields.DatetimeField(auto_now_add=True)
     updated_at = fields.DatetimeField(auto_now=True)
 
