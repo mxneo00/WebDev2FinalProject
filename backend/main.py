@@ -7,7 +7,7 @@ from starlette.responses import HTMLResponse, JSONResponse
 from fastapi.templating import Jinja2Templates
 from fastapi.staticfiles import StaticFiles
 from starlette.middleware.cors import CORSMiddleware
-from passlib.hash import bcrypt
+##from passlib.hash import bcrypt
 # Application Code
 from backend.config import app
 from backend.session import Session, CSRFToken
@@ -27,7 +27,7 @@ origins = [
 app.add_middleware(
      CORSMiddleware,
      allow_origins=origins,  
-    allow_credentials=True,
+     allow_credentials=True,
      allow_methods=["*"],  
      allow_headers=["*"],  
 )

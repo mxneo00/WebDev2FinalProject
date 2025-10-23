@@ -13,6 +13,7 @@ async def lifespan(app: FastAPI):
     try: 
         import backend.app.models
         print("Loaded models:", backend.app.models.__all__)
+        print("Initializing Tortoise ORM...")
         await Tortoise.init(
             db_url="postgres://postgres:Unitheunicorn.00@localhost:5432/gameLib",
             modules={"models": ["backend.app.models"]}
